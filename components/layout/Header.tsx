@@ -24,12 +24,9 @@ export function Header() {
     >
       <nav className="container mx-auto px-6 flex items-center justify-between">
         <Link href="/" className="group flex items-center gap-2">
-          <motion.span
-            whileHover={{ rotate: 360 }}
-            className="font-[family-name:var(--font-heading)] text-xl font-bold tracking-tight"
-          >
-            e.p
-          </motion.span>
+          <span className="font-[family-name:var(--font-heading)] text-xl font-bold tracking-tight">
+            espen pedersen
+          </span>
         </Link>
         <ul className="hidden md:flex items-center gap-8">
           {navItems.map((item) => (
