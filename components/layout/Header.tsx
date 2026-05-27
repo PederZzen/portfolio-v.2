@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ModeToggle } from "../ui/mode-toggle";
-import { motion } from "framer-motion";
+import { scrollToSection } from "@/app/functions/scrollToSection";
 
 const navItems = [
   { name: "Work", href: "#work" },
@@ -13,6 +13,29 @@ const navItems = [
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsMobileMenuOpen(false);
+    };
+    window.addEventListener("keydown", handleKey);
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", handleKey);
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [isMobileMenuOpen]);
 
   return (
     <header
@@ -34,6 +57,10 @@ export function Header() {
               <Link
                 href={item.href}
                 className="relative py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                onClick={(event) => {
+                  event.preventDefault();
+                  scrollToSection(item.href.substring(1));
+                }}
               >
                 {item.name}
               </Link>

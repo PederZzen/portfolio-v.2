@@ -3,12 +3,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { scrollToSection } from "@/app/functions/scrollToSection";
 
 export function Hero() {
   return (
-    <section className="flex min-h-[calc(100vh-5rem)] items-center justify-center py-12 md:py-16">
-      <div className="mx-auto grid w-full max-w-5xl grid-cols-1 items-center gap-10 md:gap-12 lg:max-w-6xl lg:grid-cols-2 lg:gap-16 xl:max-w-7xl">
-        <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
+    <section className="relative flex min-h-[calc(100vh-5rem)] flex-col items-center justify-center py-12 md:py-16">
+      <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-15 md:gap-12 lg:max-w-6xl lg:flex-row lg:items-center lg:justify-center lg:gap-16 xl:max-w-7xl">
+        <div className="flex max-w-xl flex-col items-start ">
           <div className="space-y-4">
             <h1 className="text-5xl font-bold md:text-6xl lg:text-7xl">
               <span className="block">Espen Pedersen</span>
@@ -18,7 +19,7 @@ export function Hero() {
             I am a web developer with a passion for creating beautiful and
             functional digital experiences.
           </p>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
             <a
               href="#work"
               className="group inline-flex items-center gap-3 px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium hover:gap-4 hover:shadow-xl transition-all duration-300"
@@ -45,7 +46,7 @@ export function Hero() {
               About me
             </a>
           </div>
-          <div className="mt-6 flex items-center justify-center gap-4 lg:justify-start">
+          <div className="mt-6 flex items-center justify-center gap-4">
             <Link
               href="https://github.com/PederZzen"
               className="group p-3 rounded-full border-2 border-border hover:bg-primary hover:border-primary transition-all duration-300 hover:scale-110 hover:-rotate-6"
@@ -74,21 +75,37 @@ export function Hero() {
               />
             </div>
 
-            <div className="absolute -bottom-4 -left-4 px-5 py-3 bg-card rounded-2xl border-2 border-border shadow-lg">
+            <div className="absolute -bottom-2 -left-2 px-5 py-3 bg-card rounded-2xl border-2 border-border shadow-lg">
               <p className="text-sm font-bold font-[family-name:var(--font-heading)]">
-                Based in Norway
+                Front-end
               </p>
-              <p className="text-xs text-muted-foreground">UTC+1</p>
+              <p className="text-xs text-muted-foreground">3+ years</p>
             </div>
 
             <div className="absolute -top-2 -right-2 px-5 py-3 bg-card rounded-2xl border-2 border-border shadow-lg">
               <p className="text-sm font-bold font-[family-name:var(--font-heading)]">
-                3+ years
+                UX / UI Design
               </p>
-              <p className="text-xs text-muted-foreground">of crafting web</p>
+              <p className="text-xs text-muted-foreground">3+ years</p>
             </div>
           </div>
         </div>
+      </div>
+
+      <div className=" flex w-full justify-center transition-all duration-700 delay-700 md:mt-20">
+        <a
+          href="#work"
+          onClick={(event) => {
+            event.preventDefault();
+            scrollToSection("work");
+          }}
+          className="group flex flex-col items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
+        >
+          <span className="text-sm">Scroll to explore</span>
+          <div className="flex h-10 w-6 items-start justify-center rounded-full border-2 border-current p-1">
+            <div className="h-3 w-1.5 animate-bounce rounded-full bg-accent" />
+          </div>
+        </a>
       </div>
     </section>
   );
