@@ -7,6 +7,7 @@ import {
   type ThemeProviderProps,
 } from "next-themes";
 import { MotionConfig } from "framer-motion";
+import { ReactLenis } from "lenis/react";
 import { Header } from "@/components/layout/Header";
 
 export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
@@ -45,8 +46,10 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <MotionConfig reducedMotion="user">
-            <Header />
-            <main className=" mx-auto pt-20">{children}</main>
+            <ReactLenis root options={{ lerp: 0.1, duration: 1.2 }}>
+              <Header />
+              <main className=" mx-auto pt-20">{children}</main>
+            </ReactLenis>
           </MotionConfig>
         </ThemeProvider>
       </body>

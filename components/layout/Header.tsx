@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useLenis } from "lenis/react";
 import { ModeToggle } from "../ui/mode-toggle";
-import { scrollToSection } from "@/functions/scrollToSection";
 import { links } from "@/lib/links";
 
 const navItems = [
@@ -15,6 +15,7 @@ const navItems = [
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const lenis = useLenis();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,7 +61,7 @@ export function Header() {
                 className="relative py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                 onClick={(event) => {
                   event.preventDefault();
-                  scrollToSection(item.href.substring(1));
+                  lenis?.scrollTo(item.href);
                 }}
               >
                 {item.name}

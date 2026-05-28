@@ -3,11 +3,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { scrollToSection } from "@/functions/scrollToSection";
+import { useLenis } from "lenis/react";
 import { links } from "@/lib/links";
 import { Reveal } from "@/components/motion/Reveal";
 
 export function Hero() {
+  const lenis = useLenis();
+
   return (
     <section className="relative flex min-h-[calc(100vh-5rem)] flex-col items-center justify-center py-12 md:py-16">
       <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-15 md:gap-12 lg:max-w-6xl lg:flex-row lg:items-center lg:justify-center lg:gap-16 xl:max-w-7xl">
@@ -27,6 +29,10 @@ export function Hero() {
             <Reveal delay={0.16} className="mt-6 flex flex-wrap items-center justify-center gap-4">
               <a
                 href="#work"
+                onClick={(event) => {
+                  event.preventDefault();
+                  lenis?.scrollTo("#work");
+                }}
                 className="group inline-flex items-center gap-3 px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium hover:gap-4 hover:shadow-xl transition-all duration-300"
               >
                 See my work
@@ -46,6 +52,10 @@ export function Hero() {
               </a>
               <a
                 href="#about"
+                onClick={(event) => {
+                  event.preventDefault();
+                  lenis?.scrollTo("#about");
+                }}
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-border text-foreground font-medium hover:border-primary hover:bg-primary/5 transition-all duration-300"
               >
                 About me
@@ -103,7 +113,7 @@ export function Hero() {
           href="#work"
           onClick={(event) => {
             event.preventDefault();
-            scrollToSection("work");
+            lenis?.scrollTo("#work");
           }}
           className="group flex flex-col items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
         >
