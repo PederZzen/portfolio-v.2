@@ -2,14 +2,6 @@
 
 import Image from "next/image";
 
-const skills = [
-  { name: "JavaScript", level: 95 },
-  { name: "TypeScript", level: 90 },
-  { name: "React", level: 92 },
-  { name: "Next.js", level: 88 },
-  { name: "Tailwind CSS", level: 95 },
-];
-
 export function About() {
   return (
     <section id="about" className="py-24 px-6 bg-secondary/30">

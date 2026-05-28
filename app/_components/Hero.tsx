@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { scrollToSection } from "@/app/functions/scrollToSection";
+import { links } from "@/lib/links";
 
 export function Hero() {
   return (
@@ -48,13 +49,13 @@ export function Hero() {
           </div>
           <div className="mt-6 flex items-center justify-center gap-4">
             <Link
-              href="https://github.com/PederZzen"
+              href={links.gitHub}
               className="group p-3 rounded-full border-2 border-border hover:bg-primary hover:border-primary transition-all duration-300 hover:scale-110 hover:-rotate-6"
             >
               <FaGithub className="size-6 text-primary transition-colors duration-300 group-hover:text-primary-foreground" />
             </Link>
             <Link
-              href="https://www.linkedin.com/in/espen-holm-pedersen-0a36a315a/"
+              href={links.linkedIn}
               className="group p-3 rounded-full border-2 border-border hover:bg-primary hover:border-primary transition-all duration-300 hover:scale-110 hover:-rotate-6"
             >
               <FaLinkedin className="size-6 text-primary transition-colors duration-300 group-hover:text-primary-foreground" />
