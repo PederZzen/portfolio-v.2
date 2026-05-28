@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ModeToggle } from "../ui/mode-toggle";
-import { scrollToSection } from "@/app/functions/scrollToSection";
+import { scrollToSection } from "@/functions/scrollToSection";
+import { links } from "@/lib/links";
 
 const navItems = [
   { name: "Work", href: "#work" },
@@ -70,7 +71,7 @@ export function Header() {
         <div className="flex items-center gap-4">
           <ModeToggle />
           <Link
-            href="#contact"
+            href={`mailto:${links.email}`}
             className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:scale-105 active:scale-95 transition-transform duration-200"
           >
             {"Let's talk"}

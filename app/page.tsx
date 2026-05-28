@@ -1,4 +1,3 @@
-import { Header } from "@/components/layout/Header";
 import { Hero } from "./_components/Hero";
 import { Projects } from "./_components/Projects";
 import { About } from "./_components/About";
@@ -7,13 +6,10 @@ import { Contact } from "./_components/Contact";
 export default function Home() {
   return (
     <>
-      <Header />
-      <main className=" mx-auto pt-20">
-        <Hero />
-        <Projects />
-        <About />
-        <Contact />
-      </main>
+      <Hero />
+      <Projects />
+      <About />
+      <Contact />
     </>
   );
 }

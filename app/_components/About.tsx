@@ -1,22 +1,23 @@
 "use client";
 
 import Image from "next/image";
+import { Reveal } from "@/components/motion/Reveal";
 
 export function About() {
   return (
     <section id="about" className="py-24 px-6 bg-secondary/30">
       <div className="container mx-auto max-w-6xl">
-        <div className={`text-center mb-16 `}>
+        <Reveal className="text-center mb-16">
           <p className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-medium mb-4">
             About Me
           </p>
           <h2 className="font-[family-name:var(--font-heading)] text-4xl md:text-5xl font-bold text-balance">
             The story behind the code
           </h2>
-        </div>
+        </Reveal>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className={`relative`}>
+          <Reveal delay={0.1} className="relative">
             <div className="absolute -inset-4 bg-gradient-to-br from-accent/10 to-primary/5 rounded-3xl blur-2xl" />
             <div className="relative rounded-3xl overflow-hidden border-2 border-border">
               <Image
@@ -55,9 +56,9 @@ export function About() {
                 </div>
               </div>
             </div>
-          </div>
+          </Reveal>
 
-          <div className={`space-y-6 transition-all duration-700 delay-300`}>
+          <Reveal delay={0.18} className="space-y-6">
             <p className="text-lg text-foreground leading-relaxed">
               I&apos;m a web developer based in{" "}
               <span className="font-medium text-accent">Norway</span> with a
@@ -76,7 +77,7 @@ export function About() {
               Trondheim, where I help customers implement and optimize their
               systems.
             </p>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

@@ -4,18 +4,31 @@ import { links } from "@/lib/links";
 import Link from "next/link";
 import { useRef, useState } from "react";
 import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
+import { Reveal } from "@/components/motion/Reveal";
+import {
+  motion,
+  useMotionTemplate,
+  useMotionValue,
+  useSpring,
+} from "framer-motion";
 
 export function Contact() {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const ref = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
 
-  const handleMouseMove = (e: React.MouseEvent) => {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const springConfig = { stiffness: 220, damping: 28, mass: 0.4 };
+  const springX = useSpring(mouseX, springConfig);
+  const springY = useSpring(mouseY, springConfig);
+
+  const background = useMotionTemplate`radial-gradient(600px circle at ${springX}px ${springY}px, var(--accent), transparent 40%)`;
+
+  const updatePos = (e: React.MouseEvent) => {
     if (!ref.current) return;
     const rect = ref.current.getBoundingClientRect();
-    setMousePos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
+    mouseX.set(e.clientX - rect.left);
+    mouseY.set(e.clientY - rect.top);
   };
 
   return (
@@ -23,27 +36,47 @@ export function Contact() {
       id="contact"
       className="py-24 px-6 relative overflow-hidden"
       ref={ref}
-      onMouseMove={handleMouseMove}
+      onMouseEnter={(e) => {
+        if (!ref.current) return;
+        const rect = ref.current.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        mouseX.jump(x);
+        mouseY.jump(y);
+        springX.jump(x);
+        springY.jump(y);
+        setIsHovered(true);
+      }}
+      onMouseMove={updatePos}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      <div
-        className="absolute inset-0 opacity-30 pointer-events-none"
-        style={{
-          background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, var(--accent), transparent 40%)`,
-        }}
+      <motion.div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isHovered ? 0.3 : 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
       />
 
       <div className="container mx-auto max-w-4xl relative">
         <div className="text-center space-y-8 ">
-          <p className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-medium">
-            Get In Touch
-          </p>
+          <Reveal>
+            <p className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-medium">
+              Get In Touch
+            </p>
+          </Reveal>
 
-          <h2 className="font-[family-name:var(--font-heading)] text-4xl md:text-6xl font-bold text-balance">
-            Let&apos;s create something{" "}
-            <span className="text-accent">amazing</span> together
-          </h2>
+          <Reveal delay={0.08}>
+            <h2 className="font-[family-name:var(--font-heading)] text-4xl md:text-6xl font-bold text-balance">
+              Let&apos;s create something{" "}
+              <span className="text-accent">amazing</span> together
+            </h2>
+          </Reveal>
 
-          <div className="flex flex-wrap justify-center gap-4 pt-4 ">
+          <Reveal
+            delay={0.16}
+            className="flex flex-wrap justify-center gap-4 pt-4"
+          >
             <a
               href="mailto:hello@espenpedersen.dev"
               className="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-primary text-primary-foreground text-lg font-medium hover:scale-105 hover:shadow-xl transition-all duration-300"
@@ -76,9 +109,12 @@ export function Contact() {
                 />
               </svg>
             </a>
-          </div>
+          </Reveal>
 
-          <div className="mt-6 flex items-center justify-center gap-4">
+          <Reveal
+            delay={0.24}
+            className="mt-6 flex items-center justify-center gap-4"
+          >
             <Link
               href={links.gitHub}
               className="group p-3 rounded-2xl border-2 border-border bg-card hover:bg-accent/5 hover:border-accent transition-all duration-300 hover:scale-110 hover:-translate-y-1"
@@ -97,7 +133,7 @@ export function Contact() {
             >
               <FaEnvelope className="size-6 text-primary transition-colors duration-300 group-hover:text-accent" />
             </Link>
-          </div>
+          </Reveal>
 
           <p className="text-sm text-muted-foreground pt-8">{links.email}</p>
         </div>

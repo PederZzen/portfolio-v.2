@@ -1,19 +1,28 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
 import { projects } from "@/lib/projects";
+// import { useRouter } from "next/navigation";
 
 type Project = (typeof projects)[number];
 
 export function ProjectCard({ project }: { project: Project }) {
+  // const router = useRouter();
+
+  // const handleClick = () => {
+  //   router.push(`/projects/${project.slug}`);
+  // };
+
   return (
-    <article className={`group relative transition-all duration-700 ease-out`}>
+    <article className="group relative h-full">
       <div
         className={`pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-br ${project.color} opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100`}
       />
 
-      <div className="relative overflow-hidden rounded-3xl border-2 border-border bg-card transition-colors duration-300 group-hover:border-accent/50">
-        <div className="relative aspect-[16/10] overflow-hidden">
+      <div className="relative flex h-full flex-col overflow-hidden rounded-3xl border-2 border-border bg-card transition-colors duration-300 group-hover:border-accent/50">
+        <div className="relative aspect-[16/10] shrink-0 overflow-hidden">
           <Image
             src={project.image}
             alt={project.title}
@@ -34,7 +43,7 @@ export function ProjectCard({ project }: { project: Project }) {
           </div>
         </div>
 
-        <div className="space-y-4 p-6">
+        <div className="flex flex-1 flex-col p-6">
           <div className="space-y-2">
             <h3 className="font-[family-name:var(--font-heading)] text-xl font-bold transition-colors group-hover:text-accent">
               {project.title}
@@ -44,20 +53,26 @@ export function ProjectCard({ project }: { project: Project }) {
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3 pt-2">
-            <Link
-              className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-transform hover:scale-105"
-              href={project.link}
-            >
-              View Project
-            </Link>
-            <Link
-              className="inline-flex items-center gap-2 rounded-full border-2 border-border px-4 py-2 text-sm font-medium transition-all hover:border-accent hover:bg-accent/5"
-              href={project.github}
-            >
-              Code
-              <FaGithub className="h-4 w-4" aria-hidden />
-            </Link>
+          <div className="mt-auto flex flex-wrap items-center gap-3 pt-4">
+            {project.link && (
+              <Link
+                className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-transform hover:scale-105"
+                href={project.link}
+                target="_blank"
+              >
+                View Project
+              </Link>
+            )}
+            {project.github && (
+              <Link
+                className="inline-flex items-center gap-2 rounded-full border-2 border-border px-4 py-2 text-sm font-medium transition-all hover:border-accent hover:bg-accent/5"
+                href={project.github}
+                target="_blank"
+              >
+                Code
+                <FaGithub className="h-4 w-4" aria-hidden />
+              </Link>
+            )}
           </div>
         </div>
       </div>

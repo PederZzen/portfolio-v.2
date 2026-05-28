@@ -6,6 +6,8 @@ import {
   ThemeProvider as NextThemesProvider,
   type ThemeProviderProps,
 } from "next-themes";
+import { MotionConfig } from "framer-motion";
+import { Header } from "@/components/layout/Header";
 
 export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
   return <NextThemesProvider {...props}>{children}</NextThemesProvider>;
@@ -42,7 +44,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <MotionConfig reducedMotion="user">
+            <Header />
+            <main className=" mx-auto pt-20">{children}</main>
+          </MotionConfig>
         </ThemeProvider>
       </body>
     </html>

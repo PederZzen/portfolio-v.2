@@ -1,10 +1,12 @@
 import { projects } from "@/lib/projects";
 import { ProjectCard } from "./ProjectCard";
+import { Reveal } from "@/components/motion/Reveal";
+
 export function Projects() {
   return (
     <section id="work" className="scroll-mt-24 px-6 py-24">
       <div className="container mx-auto max-w-6xl">
-        <header className={`mb-16 text-center`}>
+        <Reveal className="mb-16 text-center">
           <p className="mb-4 inline-block rounded-full bg-accent/10 px-4 py-1.5 text-sm font-medium text-accent">
             Featured Work
           </p>
@@ -15,11 +17,13 @@ export function Projects() {
             A selection of recent work showcasing my passion for building
             beautiful, functional web experiences.
           </p>
-        </header>
+        </Reveal>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+        <div className="grid items-stretch gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project, i) => (
+            <Reveal key={project.id} delay={i * 0.08} className="h-full">
+              <ProjectCard project={project} />
+            </Reveal>
           ))}
         </div>
       </div>
