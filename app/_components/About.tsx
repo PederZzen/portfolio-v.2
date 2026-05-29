@@ -17,46 +17,51 @@ export function About() {
         </Reveal>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <Reveal delay={0.1} className="relative">
-            <div className="absolute -inset-4 bg-gradient-to-br from-accent/10 to-primary/5 rounded-3xl blur-2xl" />
-            <div className="relative rounded-3xl overflow-hidden border-2 border-border">
-              <Image
-                src="/images/workspace.jpg"
-                alt="My workspace"
-                width={600}
-                height={400}
-                className="w-full h-auto object-cover"
-              />
-            </div>
+          <div className="relative overflow-visible">
+            <div
+              className="pointer-events-none absolute left-1/2 top-1/2 z-0 aspect-[5/4] w-[130%] -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(ellipse_at_center,color-mix(in_oklch,var(--accent)_40%,transparent)_0%,transparent_72%)]"
+              aria-hidden
+            />
+            <Reveal delay={0.1} className="relative z-10">
+              <div className="relative overflow-hidden rounded-3xl border-2 border-border">
+                <Image
+                  src="/images/workspace.jpg"
+                  alt="My workspace"
+                  width={600}
+                  height={400}
+                  className="w-full h-auto object-cover"
+                />
+              </div>
 
-            <div className="absolute -bottom-6 -right-6 p-4 bg-card rounded-2xl border-2 border-border shadow-xl">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center">
-                  <svg
-                    className="w-6 h-6 text-accent"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-                    />
-                  </svg>
-                </div>
-                <div>
-                  <p className="font-bold font-[family-name:var(--font-heading)]">
-                    3+ Years
-                  </p>
-                  <p className="text-xs text-muted-foreground">
-                    Coding Experience
-                  </p>
+              <div className="absolute -bottom-6 -right-6 p-4 bg-card rounded-2xl border-2 border-border shadow-xl">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center">
+                    <svg
+                      className="w-6 h-6 text-accent"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="font-bold font-[family-name:var(--font-heading)]">
+                      3+ Years
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      Coding Experience
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </Reveal>
+            </Reveal>
+          </div>
 
           <Reveal delay={0.18} className="space-y-6">
             <p className="text-lg text-foreground leading-relaxed">
