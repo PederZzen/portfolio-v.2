@@ -78,7 +78,7 @@ export function Contact() {
             className="flex flex-wrap justify-center gap-4 pt-4"
           >
             <a
-              href="mailto:hello@espenpedersen.dev"
+              href={`mailto:${links.email}`}
               className="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-primary text-primary-foreground text-lg font-medium hover:scale-105 hover:shadow-xl transition-all duration-300"
             >
               <svg
@@ -128,7 +128,7 @@ export function Contact() {
               <FaLinkedin className="size-6 text-primary transition-colors duration-300 group-hover:text-accent" />
             </Link>
             <Link
-              href={links.email}
+              href={`mailto:${links.email}`}
               className="group p-3 rounded-2xl border-2 border-border bg-card hover:bg-accent/5 hover:border-accent transition-all duration-300 hover:scale-110 hover:-translate-y-1"
             >
               <FaEnvelope className="size-6 text-primary transition-colors duration-300 group-hover:text-accent" />
